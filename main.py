@@ -11,8 +11,8 @@ class Cat:
         self.object = None
 
         # Initial position of the cat is at the center of the arena
-        self.posx = 640
-        self.posy = 520
+        self.posx = 520
+        self.posy = 640
 
     def move(self):
 
@@ -71,23 +71,25 @@ class Game:
         cat = Cat()
         cat.image = pygame.image.load('images/cat.png').convert()
         cat.object = cat.image.get_rect()
+        cat.posx = (screen.get_size()[0]//2 - cat.image.get_size()[0])
+        cat.posy = (screen.get_size()[1]//2 - cat.image.get_size()[1])
 
         dog1 = Dog()
-        dog1.image = pygame.image.load('images/dog1.png').convert()
+        dog1.image = pygame.image.load('images/dog1.png').convert_alpha()
         dog1.object = dog1.image.get_rect()
         dog1.posx = 0
 
 
         dog2 = Dog()
-        dog2.image = pygame.image.load('images/dog2.png').convert()
+        dog2.image = pygame.image.load('images/dog2.png').convert_alpha()
         dog2.object = dog2.image.get_rect()
 
         dog3 = Dog()
-        dog3.image = pygame.image.load('images/dog3.png').convert()
+        dog3.image = pygame.image.load('images/dog3.png').convert_alpha()
         dog3.object = dog3.image.get_rect()
 
         dog4 = Dog()
-        dog4.image = pygame.image.load('images/dog4.png').convert()
+        dog4.image = pygame.image.load('images/dog4.png').convert_alpha()
         dog4.object = dog4.image.get_rect()
 
 
@@ -96,13 +98,11 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
+                """self.screen_size[0] / 2 - self.img.get_size()[0],
+                self.screen_size[1] / 2 - self.img.get_size()[1]"""
 
-            """Problem 2: Make a more random movement pattern"""
-            cat.move()
-
-            # blit() copies the pixels from one object to another surface
-            """Problem 1: Remove the black trail left behind by the image"""
-            screen.blit(cat.image, cat.object, special_flags=0)
+                screen.blit(cat.image, (cat.posx, cat.posy))
+                
             
             
             pygame.display.flip()
