@@ -77,16 +77,20 @@ class Game:
         dog1 = Dog()
         dog1.image = pygame.image.load('images/dog1.png').convert_alpha()
         dog1.object = dog1.image.get_rect()
-        dog1.posx = 0
+        dog1.posx = (screen.get_size()[0]-dog1.image.get_size()[0])
+        dog1.posy = 32
 
 
         dog2 = Dog()
         dog2.image = pygame.image.load('images/dog2.png').convert_alpha()
         dog2.object = dog2.image.get_rect()
+        dog2.posx = 32
+        dog2.posy = (screen.get_size()[1]-dog1.image.get_size()[1])
 
         dog3 = Dog()
         dog3.image = pygame.image.load('images/dog3.png').convert_alpha()
         dog3.object = dog3.image.get_rect()
+
 
         dog4 = Dog()
         dog4.image = pygame.image.load('images/dog4.png').convert_alpha()
@@ -101,8 +105,16 @@ class Game:
                 """self.screen_size[0] / 2 - self.img.get_size()[0],
                 self.screen_size[1] / 2 - self.img.get_size()[1]"""
 
+                # Adding the cat in center
                 screen.blit(cat.image, (cat.posx, cat.posy))
-                
+                # cat.move()
+
+                # Adding dogs
+                screen.blit(dog1.image, (dog1.posx, dog1.posy))
+
+                screen.blit(dog2.image, (dog2.posx, dog2.posy))
+
+
             
             
             pygame.display.flip()
